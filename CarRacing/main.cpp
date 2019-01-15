@@ -1,12 +1,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "shader_s.h"
+#include "shader_m.h"
 #include "car.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "camera.h"
+#include "model.h"
+
+
 
 using namespace std;
 
@@ -104,9 +107,10 @@ int main()
 {	
 	createWindow();
 	callbacks();
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	//
 	Shader shader("camera_vertex.vs", "camera_fragment.fs");
+	Model carModel("from/10604_slot_car_red_SG_v1_iterations-2.obj");
 	Car carObj;
 	carObj.initialize();
 
@@ -120,7 +124,7 @@ int main()
 		callInputs();
 		
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//Draw		
 		shader.use();
 
@@ -131,10 +135,13 @@ int main()
 		shader.setMat4("view", view);
 
 		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0, 0.0, 0.0));
 		shader.setMat4("model", model);
 
-		glBindVertexArray(carObj.VAO);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		carModel.Draw(shader);
+		//glBindVertexArray(carObj.VAO);
+		//glDrawArrays(GL_TRIANGLES, 0, 3);
 		
 		glfwSwapBuffers(window);
 		glfwPollEvents();

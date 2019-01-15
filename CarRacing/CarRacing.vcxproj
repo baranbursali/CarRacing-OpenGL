@@ -133,7 +133,10 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="car.h" />
-    <ClInclude Include="shader_s.h" />
+    <ClInclude Include="mesh.h" />
+    <ClInclude Include="model.h" />
+    <ClInclude Include="shader_m.h" />
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="camera_vertex.vs" />
