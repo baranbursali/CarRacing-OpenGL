@@ -1,3 +1,1 @@
-﻿  main.cpp
-c:\users\prozone\source\repos\carracing\carracing\main.cpp(37): warning C4715: 'createWindow': not all control paths return a value
-  CarRacing.vcxproj -> C:\Users\Prozone\source\repos\CarRacing\Debug\CarRacing.exe
+﻿  CarRacing.vcxproj -> C:\Users\Utku\Desktop\CarRacing-OpenGL-master\Debug\CarRacing.exe

@@ -9,8 +9,6 @@
 #include "camera.h"
 #include "model.h"
 
-
-
 using namespace std;
 
 const unsigned int SCR_WIDTH = 1280;
@@ -32,7 +30,12 @@ float teka = 0, tekb = 0, tekc = 0;
 
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
+
+// Model matrices
 glm::mat4 model = glm::mat4(1.0f);
+glm::mat4 secondTreeModels[12];
+glm::mat4 grassModelMat[6];
+
 //
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
@@ -130,9 +133,14 @@ int main()
 	//
 	Shader shader("camera_vertex.vs", "camera_fragment.fs");
 	Shader shader1("camera_vertex.vs", "camera_fragment.fs");
+	Shader shader2("camera_vertex.vs", "camera_fragment.fs");
+	Shader skyboxShader("skyboxVertexShader.vs", "skyboxFragmentShader.fs");
+
 	Model carModel("from/10604_slot_car_red_SG_v1_iterations-2.obj");
 	Model trackModel("from/10605_Slot_Car_Race_Track_v1_L3.obj");
-	
+	Model treeModel("from/10445_Oak_Tree_v1_max2010_iteration-1.obj");
+	Model grassModel("from/10450_Rectangular_Grass_Patch_v1_iterations-2.obj");
+
 	Car carObj;
 	carObj.initialize();
 	model = glm::mat4(1.0f);
@@ -145,11 +153,38 @@ int main()
 	modelCar = glm::translate(modelCar, displacementCar);
 	glm::vec3 displacement = glm::vec3(-1.75f, -0.4f, -3.0f);
 	homeMadeCam = glm::translate(homeMadeCam, displacement);
-	float rotSpeed = 0.05;
+
+	float rotSpeed = 0.25;
 	float x = 0;
-	float speed = 0.01;
+	float speed = 0.05;
 	
-	
+	// Creating model matrices for tree models
+	int t = 0;
+	for (float j = -5.0f; j < 5.1f; j += 2.0f) {
+		secondTreeModels[t] = glm::mat4(1.0f);
+		secondTreeModels[t] = glm::translate(secondTreeModels[t], glm::vec3(0.5f, 0.0f, j));
+		secondTreeModels[t] = glm::rotate(secondTreeModels[t], -glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));;
+		secondTreeModels[t] = glm::scale(secondTreeModels[t], glm::vec3(0.004f, 0.004f, 0.005f));
+
+		secondTreeModels[t + 1] = glm::mat4(1.0f);
+		secondTreeModels[t + 1] = glm::translate(secondTreeModels[t + 1], glm::vec3(-0.5f, 0.0f, j - 1.0f));
+		secondTreeModels[t + 1] = glm::rotate(secondTreeModels[t + 1], -glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));;
+		secondTreeModels[t + 1] = glm::scale(secondTreeModels[t + 1], glm::vec3(0.004f, 0.004f, 0.005f));
+		t += 2;
+	}
+
+	// Creating model matrices for grass models
+	t = 0;
+	for (float g = -6.0f; g < 6.6f; g += 2.5f) {
+		grassModelMat[t] = glm::mat4(1.0f);
+		grassModelMat[t] = glm::translate(grassModelMat[t], glm::vec3(0.0f, 0.0f, g));
+		grassModelMat[t] = glm::rotate(grassModelMat[t], -glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));;
+		grassModelMat[t] = glm::scale(grassModelMat[t], glm::vec3(0.01f, 0.01f, 0.004f));
+		t++;
+	}
+
+	int treeIndices[6] = { 1,2,5,6,9,10 };
+
 	//Rendering
 	while (!glfwWindowShouldClose(window))
 	{
@@ -239,17 +274,27 @@ int main()
 			}
 		}
 		
-		
-		
 		shader.setMat4("view", homeMadeCam);
 		trackModel.Draw(shader);
+
+		// Drawing trees
+		for (int k = 0; k < 6; k++) {
+			shader2.setMat4("model", secondTreeModels[treeIndices[k]]);
+			treeModel.Draw(shader2);
+		}
+		
+		// Drawing grass
+		for (int l = 0; l < 6; l++) {
+			shader2.setMat4("model", grassModelMat[l]);
+			grassModel.Draw(shader2);
+		}
 		
 		shader1.use();
 		shader1.setMat4("projection", projection);
 		shader1.setMat4("model", modelCar);
 		shader1.setMat4("view", homeMadeCam);
 		carModel.Draw(shader1);		
-		
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
