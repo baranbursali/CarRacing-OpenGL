@@ -125,6 +125,18 @@ void callInputs() {
 	processInput(window);
 }
 
+bool checkCollision(glm::mat4 matrix) {
+	if (matrix[3][2] > -12 && matrix[3][2] < 12 &&
+		matrix[3][0] > -3.3    && matrix[3][0] < 3.3) {
+		if (matrix[3][2] < 7 && matrix[3][2] > -7 &&
+			matrix[3][0] > -1.3    && matrix[3][0] < 1.3) {
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
 int main()
 {	
 	createWindow();
@@ -134,7 +146,7 @@ int main()
 	Shader shader("camera_vertex.vs", "camera_fragment.fs");
 	Shader shader1("camera_vertex.vs", "camera_fragment.fs");
 	Shader shader2("camera_vertex.vs", "camera_fragment.fs");
-	Shader skyboxShader("skyboxVertexShader.vs", "skyboxFragmentShader.fs");
+	//Shader skyboxShader("skyboxVertexShader.vs", "skyboxFragmentShader.fs");
 
 	Model carModel("from/10604_slot_car_red_SG_v1_iterations-2.obj");
 	Model trackModel("from/10605_Slot_Car_Race_Track_v1_L3.obj");
@@ -153,10 +165,11 @@ int main()
 	modelCar = glm::translate(modelCar, displacementCar);
 	glm::vec3 displacement = glm::vec3(-1.75f, -0.4f, -3.0f);
 	homeMadeCam = glm::translate(homeMadeCam, displacement);
+	glm::mat4 temp = glm::mat4(1.0f);;
 
-	float rotSpeed = 0.25;
+	float rotSpeed = 0.16;
 	float x = 0;
-	float speed = 0.05;
+	float speed = 0.04;
 	
 	// Creating model matrices for tree models
 	int t = 0;
@@ -201,8 +214,11 @@ int main()
 		shader.use();
 		shader.setMat4("projection", projection);		
 		shader.setMat4("model", model);
-
-		
+		/*printf("%f %f %f %f \n %f %f %f %f \n %f %f %f %f \n %f %f %f %f \n \n XXXX \n", modelCar[0][0]
+			, modelCar[0][1], modelCar[0][2],  modelCar[0][3],  modelCar[1][0], modelCar[1][1], modelCar[1][2], modelCar[1][3]
+			, modelCar[2][0], modelCar[2][1], modelCar[2][2], modelCar[2][3], modelCar[3][0], modelCar[3][1], modelCar[3][2]
+			, modelCar[3][3]);
+		*/
 		if (camAngle == 2 && set == true) {
 			homeMadeCam = glm::translate(homeMadeCam, glm::vec3(0, 0, -0.5f));
 			homeMadeCam = glm::translate(homeMadeCam, glm::vec3(0,-0.5f, -1.5f));
@@ -216,61 +232,80 @@ int main()
 		}
 		else {
 			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-				homeMadeCam = glm::translate(homeMadeCam, -dC);
-				homeMadeCam = glm::rotate(homeMadeCam, -glm::radians(rotSpeed), glm::vec3(0, 1, 0));
-				homeMadeCam = glm::translate(homeMadeCam, dC);
+				temp = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+				if (checkCollision(temp)) {
+					homeMadeCam = glm::translate(homeMadeCam, -dC);
+					homeMadeCam = glm::rotate(homeMadeCam, -glm::radians(rotSpeed), glm::vec3(0, 1, 0));
+					homeMadeCam = glm::translate(homeMadeCam, dC);
 
 
-				modelCar = glm::rotate(modelCar, glm::radians(rotSpeed), glm::vec3(0, 0, 1));
-				x += glm::radians(rotSpeed);
-				homeMadeCam = glm::translate(homeMadeCam, glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f));
-				dC += glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f);
-				modelCar = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+					modelCar = glm::rotate(modelCar, glm::radians(rotSpeed), glm::vec3(0, 0, 1));
+					x += glm::radians(rotSpeed);
+					homeMadeCam = glm::translate(homeMadeCam, glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f));
+					dC += glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f);
+					modelCar = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+				}
 			}
 			else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-				homeMadeCam = glm::translate(homeMadeCam, -dC);
-				homeMadeCam = glm::rotate(homeMadeCam, glm::radians(rotSpeed), glm::vec3(0, 1, 0));
-				homeMadeCam = glm::translate(homeMadeCam, dC);
+				temp = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+				if (checkCollision(temp)) {
+					homeMadeCam = glm::translate(homeMadeCam, -dC);
+					homeMadeCam = glm::rotate(homeMadeCam, glm::radians(rotSpeed), glm::vec3(0, 1, 0));
+					homeMadeCam = glm::translate(homeMadeCam, dC);
 
-				modelCar = glm::rotate(modelCar, -glm::radians(rotSpeed), glm::vec3(0, 0, 1));
-				x += -glm::radians(rotSpeed);
-				homeMadeCam = glm::translate(homeMadeCam, glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f));
-				dC += glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f);
-				modelCar = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+					modelCar = glm::rotate(modelCar, -glm::radians(rotSpeed), glm::vec3(0, 0, 1));
+					x += -glm::radians(rotSpeed);
+					homeMadeCam = glm::translate(homeMadeCam, glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f));
+					dC += glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f);
+					modelCar = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+				}
 			}
 			else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-				homeMadeCam = glm::translate(homeMadeCam, -dC);
-				homeMadeCam = glm::rotate(homeMadeCam, glm::radians(rotSpeed), glm::vec3(0, 1, 0));
-				homeMadeCam = glm::translate(homeMadeCam, dC);
+				temp = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+				if (checkCollision(temp)) {
+					homeMadeCam = glm::translate(homeMadeCam, -dC);
+					homeMadeCam = glm::rotate(homeMadeCam, glm::radians(rotSpeed), glm::vec3(0, 1, 0));
+					homeMadeCam = glm::translate(homeMadeCam, dC);
 
-				modelCar = glm::rotate(modelCar, -glm::radians(rotSpeed), glm::vec3(0, 0, 1));
-				x += -glm::radians(rotSpeed);
-				homeMadeCam = glm::translate(homeMadeCam, glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f));
-				dC += glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f);
-				modelCar = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+					modelCar = glm::rotate(modelCar, -glm::radians(rotSpeed), glm::vec3(0, 0, 1));
+					x += -glm::radians(rotSpeed);
+					homeMadeCam = glm::translate(homeMadeCam, glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f));
+					dC += glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f);
+					modelCar = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+				}
 			}
 			else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-				homeMadeCam = glm::translate(homeMadeCam, -dC);
-				homeMadeCam = glm::rotate(homeMadeCam, -glm::radians(rotSpeed), glm::vec3(0, 1, 0));
-				homeMadeCam = glm::translate(homeMadeCam, dC);
+				temp = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+				if (checkCollision(temp)) {
+					homeMadeCam = glm::translate(homeMadeCam, -dC);
+					homeMadeCam = glm::rotate(homeMadeCam, -glm::radians(rotSpeed), glm::vec3(0, 1, 0));
+					homeMadeCam = glm::translate(homeMadeCam, dC);
 
-				modelCar = glm::rotate(modelCar, glm::radians(rotSpeed), glm::vec3(0, 0, 1));
-				x += glm::radians(rotSpeed);
-				homeMadeCam = glm::translate(homeMadeCam, glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f));
-				dC += glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f);
-				modelCar = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+					modelCar = glm::rotate(modelCar, glm::radians(rotSpeed), glm::vec3(0, 0, 1));
+					x += glm::radians(rotSpeed);
+					homeMadeCam = glm::translate(homeMadeCam, glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f));
+					dC += glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f);
+					modelCar = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+				}
 			}
 			else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-
-				homeMadeCam = glm::translate(homeMadeCam, glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f));
-				dC += glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f);
-				modelCar = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+				temp = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+				if (checkCollision(temp)) {
+					homeMadeCam = glm::translate(homeMadeCam, glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f));
+					dC += glm::vec3(sin(x)*speed / 10.0f, 0.0, cos(x)*speed / 10.0f);
+					modelCar = glm::translate(modelCar, glm::vec3(0.0f, speed, 0.0f));
+				 }
+					
+				
+				
 			}
 			else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-
-				homeMadeCam = glm::translate(homeMadeCam, glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f));
-				dC += glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f);
-				modelCar = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+				temp = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+				if (checkCollision(temp)) {
+					homeMadeCam = glm::translate(homeMadeCam, glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f));
+					dC += glm::vec3(-sin(x)*speed / 10.0f, 0.0, -cos(x)*speed / 10.0f);
+					modelCar = glm::translate(modelCar, glm::vec3(0.0f, -speed, 0.0f));
+				}
 			}
 		}
 		
