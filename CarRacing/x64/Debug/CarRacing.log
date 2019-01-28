@@ -1,0 +1,39 @@
+﻿  car.cpp
+  main.cpp
+c:\users\utku\desktop\project\carracing\mesh.h(88): warning C4267: 'bağımsız değişken': 'size_t' - 'GLsizei' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(43): warning C4244: 'bağımsız değişken': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(79): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(80): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(84): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(85): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(87): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(88): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(170): warning C4305: 'başlatılıyor': 'double' iken 'float' olarak kesildi
+c:\users\utku\desktop\project\carracing\main.cpp(172): warning C4305: 'başlatılıyor': 'double' iken 'float' olarak kesildi
+c:\users\utku\desktop\project\carracing\main.cpp(204): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+  Kod Üretiliyor...
+c:\users\utku\desktop\project\carracing\main.cpp(116): warning C4715: 'createWindow': tüm denetim yolları değer döndürmez
+  glad.c
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwInit, "int __cdecl createWindow(void)" (?createWindow@@YAHXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwTerminate, "int __cdecl createWindow(void)" (?createWindow@@YAHXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwWindowHint, "int __cdecl createWindow(void)" (?createWindow@@YAHXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwCreateWindow, "int __cdecl createWindow(void)" (?createWindow@@YAHXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwWindowShouldClose, main işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwSetWindowShouldClose, "void __cdecl processInput(struct GLFWwindow *)" (?processInput@@YAXPEAUGLFWwindow@@@Z) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwSetFramebufferSizeCallback, "void __cdecl callbacks(void)" (?callbacks@@YAXXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwPollEvents, main işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwGetKey, "void __cdecl processInput(struct GLFWwindow *)" (?processInput@@YAXPEAUGLFWwindow@@@Z) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwSetCursorPosCallback, "void __cdecl callbacks(void)" (?callbacks@@YAXXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwSetScrollCallback, "void __cdecl callbacks(void)" (?callbacks@@YAXXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwGetTime, main işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwMakeContextCurrent, "int __cdecl createWindow(void)" (?createWindow@@YAHXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwSwapBuffers, main işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol glfwGetProcAddress, "int __cdecl createWindow(void)" (?createWindow@@YAHXZ) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol "public: __cdecl Assimp::Importer::Importer(void)" (??0Importer@Assimp@@QEAA@XZ), "private: void __cdecl Model::loadModel(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadModel@Model@@AEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol "public: __cdecl Assimp::Importer::~Importer(void)" (??1Importer@Assimp@@QEAA@XZ), "private: void __cdecl Model::loadModel(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadModel@Model@@AEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol "public: struct aiScene const * __cdecl Assimp::Importer::ReadFile(char const *,unsigned int)" (?ReadFile@Importer@Assimp@@QEAAPEBUaiScene@@PEBDI@Z), "public: struct aiScene const * __cdecl Assimp::Importer::ReadFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int)" (?ReadFile@Importer@Assimp@@QEAAPEBUaiScene@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol "public: char const * __cdecl Assimp::Importer::GetErrorString(void)const " (?GetErrorString@Importer@Assimp@@QEBAPEBDXZ), "private: void __cdecl Model::loadModel(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadModel@Model@@AEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol aiGetMaterialTextureCount, "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) işlevinde başvurdu
+main.obj : error LNK2019: Çözümlenmemiş dış sembol aiGetMaterialTexture, "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) işlevinde başvurdu
+C:\Users\Utku\Documents\OpenGLStuff\Libraries\Debug\glfw3.lib : warning LNK4272: 'x86' kitaplık makine türü, 'x64' hedef makine türüyle çakışıyor
+C:\Users\Utku\Desktop\project\x64\Debug\CarRacing.exe : fatal error LNK1120: 21 çözümlenmemiş dışlar
