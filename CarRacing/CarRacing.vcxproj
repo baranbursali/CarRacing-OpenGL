@@ -74,8 +74,8 @@
     <LibraryPath>C:\Users\Utku\Documents\OpenGLStuff\Libraries\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\Utku\Documents\OpenGLStuff\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Utku\Documents\OpenGLStuff\Libraries\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Prozone\Documents\OpenGL_imports\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Prozone\Documents\OpenGL_imports\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Users\Utku\Documents\OpenGLStuff\Include;$(IncludePath)</IncludePath>
