@@ -1,0 +1,13 @@
+﻿  main.cpp
+c:\users\utku\desktop\project\carracing\main.cpp(44): warning C4244: 'bağımsız değişken': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(80): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(81): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(85): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(86): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(88): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(89): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(172): warning C4305: 'başlatılıyor': 'double' iken 'float' olarak kesildi
+c:\users\utku\desktop\project\carracing\main.cpp(174): warning C4305: 'başlatılıyor': 'double' iken 'float' olarak kesildi
+c:\users\utku\desktop\project\carracing\main.cpp(226): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\project\carracing\main.cpp(117): warning C4715: 'createWindow': tüm denetim yolları değer döndürmez
+  CarRacing.vcxproj -> C:\Users\Utku\Desktop\project\Debug\CarRacing.exe
