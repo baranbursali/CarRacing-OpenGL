@@ -1,1 +1,16 @@
-﻿  CarRacing.vcxproj -> C:\Users\Prozone\source\repos\CarRacing\Release\CarRacing.exe
+﻿  main.cpp
+c:\users\utku\desktop\carracing\carracing\main.cpp(45): warning C4244: 'bağımsız değişken': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\carracing\carracing\main.cpp(81): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\carracing\carracing\main.cpp(82): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\carracing\carracing\main.cpp(86): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\carracing\carracing\main.cpp(87): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\carracing\carracing\main.cpp(89): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\carracing\carracing\main.cpp(90): warning C4244: '=': 'double' - 'float' dönüşümü; veri kaybı olabilir
+c:\users\utku\desktop\carracing\carracing\main.cpp(278): warning C4244: 'başlatılıyor': 'double' - 'float' dönüşümü; veri kaybı olabilir
+  Kod üretiliyor
+c:\users\utku\desktop\carracing\carracing\main.cpp(118): warning C4715: 'createWindow': tüm denetim yolları değer döndürmez
+  40 of 1318 functions ( 3.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    8 functions had inline decision re-evaluated but remain unchanged
+  Kodun üretilmesi tamamlandı
+  CarRacing.vcxproj -> C:\Users\Utku\Desktop\CarRacing\Release\CarRacing.exe
